@@ -16,6 +16,7 @@ massive(process.env.CONNECTION_STRING)
   })
   .catch(console.log);
 
+app.post(`/api/newPost`);
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
