@@ -1,17 +1,5 @@
 import React, { Component } from "react";
-
-const authPage = {
-  background: "linear-gradient(to right, #ff70a6, #e9ff70",
-  height: "100vh"
-};
-
-const authContainer = {
-  height: "50vh",
-  display: "flex",
-  flexDirection: "column",
-  color: "#f2f2f2",
-  width: "40vw"
-};
+import "./Auth.css";
 
 class Auth extends Component {
   constructor() {
@@ -30,8 +18,8 @@ class Auth extends Component {
 
   render() {
     return (
-      <div style={authPage}>
-        <div style={authContainer}>
+      <div className="authPage">
+        <div className="authContainer">
           <img />
           <h1>Helo</h1>
           <input

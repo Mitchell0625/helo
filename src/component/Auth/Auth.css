@@ -1,0 +1,16 @@
+.authContainer {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  color: #f2f2f2;
+  width: 40vw;
+  border-radius: 4px;
+}
+
+.authPage {
+  background: linear-gradient(to right, #ff70a6, #e9ff70);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
