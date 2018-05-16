@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import "./Auth.css";
+import helo from "../../images/helo_logo.png";
+import { registerUser } from "../../ducks/reducer";
+import { connect } from "react-redux";
 
 class Auth extends Component {
   constructor() {
@@ -20,23 +23,34 @@ class Auth extends Component {
     return (
       <div className="authPage">
         <div className="authContainer">
-          <img />
+          <img src={helo} alt="helo-logo" />
           <h1>Helo</h1>
-          <input
-            name="userName"
-            value={this.state.userName}
-            onChange={e => this.handleInput(e)}
-          />
-          <input
-            name="passWord"
-            value={this.state.passWord}
-            onChange={e => this.handleInput(e)}
-          />
-          <button>Login</button>
-          <button>Register</button>
+          <div className="signin">
+            <p> Username:</p>
+            <input
+              name="userName"
+              value={this.state.userName}
+              onChange={e => this.handleInput(e)}
+            />
+          </div>
+          <div className="signin">
+            <p>Password:</p>
+            <input
+              name="passWord"
+              value={this.state.passWord}
+              onChange={e => this.handleInput(e)}
+            />
+          </div>
+          <div id="sign-buttons">
+            <button>Login</button>
+
+            <button>Register</button>
+          </div>
         </div>
       </div>
     );
   }
 }
-export default Auth;
+
+function mapStateToProps(state) {}
+export default (Auth));
