@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-function Nav() {
+import { connect } from "react-redux";
+function Nav(props) {
   return (
     <div>
+      <div>
+        <img src={props.profile_pic} alt="user image" />
+        <h2>{props.user.username}</h2>
+      </div>
       <Link to="/dashboard">
         <button>Home</button>
       </Link>
@@ -17,4 +21,11 @@ function Nav() {
   );
 }
 
-export default Nav;
+function mapStateToProps(state) {
+  const { username, profilepic } = state;
+  return {
+    username,
+    profilepic
+  };
+}
+export default connect(mapStateToProps)(Nav);

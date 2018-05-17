@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   color: #f2f2f2;
-  width: 60vw;
+  width: 400px;
   border-radius: 4px;
   /* border: 1px solid black; */
   box-shadow: 1px 2px 2px gray;
@@ -26,9 +26,11 @@
 #sign-buttons button {
   padding: 10px 30px;
   background-color: gray;
-  border-radius: 8px;
+  border-radius: 2px;
+  border-style: none;
   color: white;
   margin: 10px;
+  font-size: 14px;
 }
 .signin {
   display: flex;
@@ -36,10 +38,11 @@
   justify-content: space-around;
 }
 .signin input {
-  width: 80%;
+  width: 60%;
   height: 20px;
-  border-radius: 4px;
+  border-radius: 2px;
   outline: none;
+  border-style: none;
 }
 .authContainer h1 {
   font-size: 50px;

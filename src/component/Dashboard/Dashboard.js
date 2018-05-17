@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
 class Dashboard extends Component {
   constructor() {
     super();
@@ -9,4 +9,8 @@ class Dashboard extends Component {
     return <div>Dashboard</div>;
   }
 }
-export default Dashboard;
+
+function mapStateToProps(state) {
+  return { ...state };
+}
+export default connect(mapStateToProps)(Dashboard);
