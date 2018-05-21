@@ -18,7 +18,12 @@
   justify-content: center;
   align-items: center;
 }
-
+#to-sign {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+}
 .authContainer img {
   width: 100px;
   margin: 0 auto;

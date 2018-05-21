@@ -32,23 +32,25 @@ class Auth extends Component {
             <img src={helo} alt="helo-logo" />
           </a>
           <h1>Helo</h1>
-          <div className="signin">
-            <p> Username:</p>
-            <input
-              name="username"
-              type="text"
-              value={this.state.username}
-              onChange={e => this.handleInput(e)}
-            />
-          </div>
-          <div className="signin">
-            <p>Password:</p>
-            <input
-              name="password"
-              // type="password"
-              value={this.state.password}
-              onChange={e => this.handleInput(e)}
-            />
+          <div id="to-sign">
+            <div className="signin">
+              <p> Username:</p>
+              <input
+                name="username"
+                type="text"
+                value={this.state.username}
+                onChange={e => this.handleInput(e)}
+              />
+            </div>
+            <div className="signin">
+              <p>Password:</p>
+              <input
+                name="password"
+                // type="password"
+                value={this.state.password}
+                onChange={e => this.handleInput(e)}
+              />
+            </div>
           </div>
           <div id="sign-buttons">
             {!this.state.userName && !this.state.password ? (
