@@ -4,7 +4,7 @@ import helo from "../../images/helo_logo.png";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { registerUser, loginUser } from "../../ducks/reducer";
+import { registerUser, loginUser, holdUser } from "../../ducks/reducer";
 
 class Auth extends Component {
   constructor() {
@@ -95,4 +95,6 @@ class Auth extends Component {
 function mapStateToProps(state) {
   return { ...state };
 }
-export default connect(mapStateToProps, { registerUser, loginUser })(Auth);
+export default connect(mapStateToProps, { registerUser, loginUser, holdUser })(
+  Auth
+);
