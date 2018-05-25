@@ -4,12 +4,14 @@ const initialState = {
   username: "",
   id: "",
   profilepic: "",
-  user: []
+  user: [],
+  posts: []
 };
 
 const REGISTER_USER = "REGISTER_USER";
 const LOGIN_USER = "LOGIN_USER";
 const HOLD_USER = "HOLD_USER";
+const GET_POSTS = "GET_POSTS";
 
 export function registerUser(username, password) {
   return {
@@ -35,6 +37,13 @@ export function holdUser({ id, username, profilepic }) {
     }
   };
 }
+
+export function getPosts(id, search) {
+  return {
+    type: GET_POSTS,
+    payload: axios.post(`/api/posts/${id}`, { search })
+  };
+}
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case `${REGISTER_USER}_FULFILLED`:
@@ -56,6 +65,7 @@ export default function reducer(state = initialState, action) {
         username: action.payload.username,
         password: action.payload.password
       };
+
     default:
       return state;
   }

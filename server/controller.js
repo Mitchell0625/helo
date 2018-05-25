@@ -23,5 +23,17 @@ module.exports = {
         res.status(200).json(response[0]);
       })
       .catch(e => console.log(e));
+  },
+  getPosts: (req, res) => {
+    const dbInstance = req.app.get("db");
+    const { search } = req.body;
+    const { id } = req.params;
+
+    dbInstance
+      .getPosts([id, search])
+      .then(posts => {
+        if (posts && search) res.status(200).json(posts);
+      })
+      .catch(e => console.log(e));
   }
 };
