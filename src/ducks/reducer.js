@@ -38,22 +38,20 @@ export function holdUser({ id, username, profilepic }) {
   };
 }
 
-export function getPosts(id, search) {
+export function getPosts(id, inputVal) {
   return {
     type: GET_POSTS,
-    payload: axios.post(`/api/posts/${id}`, { search })
+    payload: axios.get(`/api/posts/${id}`, { inputVal })
   };
 }
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case `${REGISTER_USER}_FULFILLED`:
-      console.log(action);
       return {
         ...state,
         user: action.payload.data
       };
     case `${LOGIN_USER}_FULFILLED`:
-      console.log(action);
       return {
         ...state,
         user: action.payload.data
@@ -64,6 +62,12 @@ export default function reducer(state = initialState, action) {
         id: action.payload.id,
         username: action.payload.username,
         password: action.payload.password
+      };
+    case `${GET_POSTS}_FULFILLED`:
+      console.log(action);
+      return {
+        ...state,
+        posts: action.payload.data
       };
 
     default:

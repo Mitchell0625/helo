@@ -1,44 +1,64 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
+import { getPosts } from "../../ducks/reducer";
+import "./Dashboard.css";
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       checked: true,
-      posts: []
+      inputVal: ""
     };
-    this.getPosts = this.getPosts.bind(this);
+    this.getUserPosts = this.getUserPosts.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
-  componentDidMount() {
-    this.getPosts();
+  getUserPosts() {
+    this.props.getPosts(this.props.user.id, this.state.inputVal);
   }
-  getPosts() {
-    axios.posts(`/api/posts/${this.props.user.id}`);
+
+  handleInput(e) {
+    this.setState({ inputVal: e.target.value });
   }
 
   render() {
-    let posts = this.state.posts.map((e, i) => {
+    let posts = this.props.posts.map((e, i) => {
       return (
         <div key={i}>
           <h2>{e.title}</h2>
           <h2>{e.author_id}</h2>
-          <img src={e.img} />
+          <img src={e.img} alt="post" />
         </div>
       );
     });
+
     return (
-      <div>
-        <input type="text" placeholder="Search by Title" />
-        <button>Search</button>
-        <button>Reset</button>
-        <p>
-          My Posts<span>
-            <input type="checkbox" value={this.state.checked} />
-          </span>
-        </p>
+      <div className="dashboard-page">
+        <div className="dash-header">
+          <div className="search-bar">
+            <input
+              type="text"
+              className="search"
+              value={this.state.inputVal}
+              placeholder="Search by Title"
+              onChange={e => {
+                this.handleInput(e);
+              }}
+            />
+            <button className="search-btn" onClick={() => this.getUserPosts()}>
+              <i className="fas fa-search fa-3x" />
+            </button>
+            <button className="reset">Reset</button>
+          </div>
+          <p>
+            My Posts<span>
+              <input type="checkbox" value={this.state.checked} />
+            </span>
+          </p>
+        </div>
+        {posts}
       </div>
     );
   }
@@ -47,4 +67,4 @@ class Dashboard extends Component {
 function mapStateToProps(state) {
   return state;
 }
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, { getPosts })(Dashboard);

@@ -23,8 +23,6 @@ class Auth extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     return (
       <div className="authPage">
         <div className="authContainer">

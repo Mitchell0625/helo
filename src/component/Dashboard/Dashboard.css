@@ -1,0 +1,38 @@
+.dashboard-page {
+  background-color: #f2f2f2;
+  height: 100vh;
+}
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  height: 10vh;
+}
+.search {
+  padding: 10px;
+  width: 80%;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+.search-btn {
+  background: #ff9770;
+}
+.search-btn i {
+  color: white;
+}
+.search-bar {
+  width: 75%;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reset {
+  background-color: #403d39;
+  color: #f2f2f2;
+  height: 100%;
+  padding: 10px;
+  width: 60px;
+  border-radius: 2px;
+}
