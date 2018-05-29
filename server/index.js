@@ -27,9 +27,15 @@ app.use(
     }
   })
 );
+//login
 app.post(`/api/auth/register`, cont.registerUser);
 app.post("/api/auth/login", cont.loginUser);
+
+//posts
 app.get(`/api/posts/:id`, cont.getPosts);
+app.get(`/api/post/:postid`, cont.getAPost);
+app.post(`/api/post/:userid`, cont.makePost);
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });

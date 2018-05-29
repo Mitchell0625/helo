@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getPosts } from "../../ducks/reducer";
+
 import "./Dashboard.css";
 
 class Dashboard extends Component {
@@ -9,28 +11,50 @@ class Dashboard extends Component {
 
     this.state = {
       checked: true,
-      inputVal: ""
+      search: "",
+      posts: [],
+      userPosts: true
     };
     this.getUserPosts = this.getUserPosts.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
 
   getUserPosts() {
-    this.props.getPosts(this.props.user.id, this.state.inputVal);
+    const { search } = this.state;
+    if (this.state.search) {
+      return axios
+        .get(`/api/posts/${this.props.user.id}`, { search })
+        .then(response => {
+          console.log(response);
+          this.setState({ posts: response.data });
+        })
+        .catch(e => console.log(e));
+    }
+    return axios
+      .get(`/api/posts/${this.props.user.id}`)
+      .then(response => {
+        this.setState({ posts: response.data });
+      })
+      .catch(e => console.log(e));
   }
 
   handleInput(e) {
-    this.setState({ inputVal: e.target.value });
+    this.setState({ search: e.target.value });
   }
 
   render() {
-    let posts = this.props.posts.map((e, i) => {
+    console.log(this.state);
+    let posts = this.state.posts.map((e, i) => {
       return (
-        <div key={i}>
-          <h2>{e.title}</h2>
-          <h2>{e.author_id}</h2>
-          <img src={e.img} alt="post" />
-        </div>
+        <Link key={i} to={`/post/${e.id}`}>
+          <div className="post">
+            <h2>{e.title}</h2>
+            <div>
+              <h2>{e.username}</h2>
+              <img src={e.profile_pic} alt="post" />
+            </div>
+          </div>
+        </Link>
       );
     });
 
@@ -41,7 +65,7 @@ class Dashboard extends Component {
             <input
               type="text"
               className="search"
-              value={this.state.inputVal}
+              value={this.state.search}
               placeholder="Search by Title"
               onChange={e => {
                 this.handleInput(e);
@@ -67,4 +91,4 @@ class Dashboard extends Component {
 function mapStateToProps(state) {
   return state;
 }
-export default connect(mapStateToProps, { getPosts })(Dashboard);
+export default connect(mapStateToProps)(Dashboard);

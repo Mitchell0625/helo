@@ -4,14 +4,12 @@ const initialState = {
   username: "",
   id: "",
   profilepic: "",
-  user: [],
-  posts: []
+  user: []
 };
 
 const REGISTER_USER = "REGISTER_USER";
 const LOGIN_USER = "LOGIN_USER";
 const HOLD_USER = "HOLD_USER";
-const GET_POSTS = "GET_POSTS";
 
 export function registerUser(username, password) {
   return {
@@ -38,12 +36,6 @@ export function holdUser({ id, username, profilepic }) {
   };
 }
 
-export function getPosts(id, inputVal) {
-  return {
-    type: GET_POSTS,
-    payload: axios.get(`/api/posts/${id}`, { inputVal })
-  };
-}
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case `${REGISTER_USER}_FULFILLED`:
@@ -62,12 +54,6 @@ export default function reducer(state = initialState, action) {
         id: action.payload.id,
         username: action.payload.username,
         password: action.payload.password
-      };
-    case `${GET_POSTS}_FULFILLED`:
-      console.log(action);
-      return {
-        ...state,
-        posts: action.payload.data
       };
 
     default:
