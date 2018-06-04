@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Form extends Component {
   constructor() {
@@ -20,9 +21,9 @@ class Form extends Component {
 
   newPost() {
     const { title, imgUrl, content } = this.state;
-    axios
-      .post(`/api/post/${this.props.user.id}`, { title, imgUrl, content })
-      .then(response => {});
+    axios.post(`/api/post`, { title, imgUrl, content }).then(response => {
+      <Link to="/" />;
+    });
   }
 
   render() {
@@ -52,7 +53,4 @@ class Form extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return state;
-}
-export default connect(mapStateToProps)(Form);
+export default Form;

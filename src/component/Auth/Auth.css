@@ -9,6 +9,9 @@
   /* border: 1px solid black; */
   box-shadow: 1px 2px 2px gray;
 }
+a > img {
+  width: 100px;
+}
 
 .authPage {
   position: relative;

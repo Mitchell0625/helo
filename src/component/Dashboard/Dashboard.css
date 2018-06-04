@@ -49,3 +49,7 @@
 .post img {
   width: 80px;
 }
+section + p {
+  font-size: 40px;
+  font-weight: bold;
+}

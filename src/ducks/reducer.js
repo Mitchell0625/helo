@@ -2,7 +2,6 @@ import axios from "axios";
 
 const initialState = {
   username: "",
-  id: "",
   profilepic: "",
   user: []
 };
@@ -25,11 +24,10 @@ export function loginUser(username, password) {
   };
 }
 
-export function holdUser({ id, username, profilepic }) {
+export function holdUser({ username, profilepic }) {
   return {
     type: HOLD_USER,
     payload: {
-      id,
       username,
       profilepic
     }
@@ -51,7 +49,7 @@ export default function reducer(state = initialState, action) {
     case `${HOLD_USER}_FULFILLED`:
       return {
         ...state,
-        id: action.payload.id,
+
         username: action.payload.username,
         password: action.payload.password
       };

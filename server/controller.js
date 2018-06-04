@@ -32,10 +32,9 @@ module.exports = {
     const dbInstance = req.app.get("db");
     console.log(req.body);
     const { search } = req.query;
-    const { id } = req.params;
     console.log("id, title:", id, search);
     dbInstance
-      .get_posts([id])
+      .get_posts([req.session.id, search])
       .then(posts => {
         res.status(200).json(posts);
         // if (posts && search) res.status(200).json(posts);
@@ -56,10 +55,9 @@ module.exports = {
   },
   makePost: (req, res) => {
     const dbInstance = req.app.get("db");
-    const { userid } = req.params;
     const { title, img, content } = req.body;
     dbInstance
-      .make_post([title, img, content, userid])
+      .make_post([title, img, content, req.session.userid])
       .then(() => res.status(200).json())
       .catch(e => console.log(e));
   }

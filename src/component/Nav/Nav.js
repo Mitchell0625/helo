@@ -20,7 +20,7 @@ function Nav(props) {
               <img src={home} alt="home icon" />
             </button>
           </Link>
-          <Link to="/post/:postid">
+          <Link to="/new">
             <button>
               <img src={newPost} alt="post icon" />
             </button>
